@@ -50,19 +50,38 @@
     </form>
     <p id="errorMessage" class="error"></p>
   </div>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
   <script>
     document.getElementById("loginForm").addEventListener("submit", function (event) {
-      event.preventDefault();
-      var username = document.getElementById("username").value;
-      var password = document.getElementById("password").value;
+    event.preventDefault();
+    var encryptedUsername = "U2FsdGVkX18pH48aOmxhbmQ=";
+    var encryptedPassword = "U2FsdGVkX19tQ1Q3eWpVV0tuUA==";
 
-      if (username === "Akshayan" && password === "qwertyuiop") {
-        window.location.href = "home.html";
-      } else {
-        document.getElementById("errorMessage").textContent = "Invalid username or password.";
-      }
-    });
+    var username = decrypt(encryptedUsername);
+    var password = decrypt(encryptedPassword);
+
+    var inputUsername = document.getElementById("username").value;
+   var inputPassword = document.getElementById("password").value;
+
+    if (inputUsername === username && inputPassword === password) {
+     window.location.href = "home.html";
+   } else {
+     document.getElementById("errorMessage").textContent = "Invalid username or password.";
+   }
+  });
+
+  function decrypt(encryptedString) {
+    var key = "mySecretKey";
+   var decryptedString = "";
+   try {
+     var bytes = CryptoJS.AES.decrypt(encryptedString, key);
+      decryptedString = bytes.toString(CryptoJS.enc.Utf8);
+    } catch (error) {
+     console.error("Decryption failed:", error);
+    }
+   return decryptedString;
+  }
+
   </script>
 </body>
 
