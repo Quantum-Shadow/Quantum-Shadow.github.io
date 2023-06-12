@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Home Page</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 100px;
+    }
+
+    .button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #00ff00;
+      color: #000;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Welcome to the Home Page!</h1>
+    <button class="button" onclick="showQRCode()">Scan</button>
+    <div id="qrcode" style="display: none;"></div>
+  </div>
+
+  <script>
+    function showQRCode() {
+      document.getElementById("qrcode").innerHTML = '<a href="download.html"><img src="QRscanme.png"></a>';
+      document.getElementById("qrcode").style.display = "block";
+    }
+  </script>
+</body>
+
+</html>
